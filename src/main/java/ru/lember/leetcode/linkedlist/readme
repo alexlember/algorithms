@@ -1,0 +1,8 @@
+reversing of singly linked list is performed with 3 pointers:
+1) current (head)
+2) next (jumping at 1st turn)
+3) previous
+
+in the end returns previous, stops at current.
+
+4 lines of code in the loop

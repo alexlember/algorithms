@@ -1,0 +1,17 @@
+Which sort to use?
+
+stable? merge, insertion
+parallel? bitonic, batcher even-odd, smooth, cube, column, GPU
+distinct keys?
+multiple key types?
+large or small?
+linked list or array?
+randomly ordered?
+guaranteed performance?
+deterministic?
+
+string/radix - distribution, MSD, LSD, 3-way string quicksort
+
+
+
+internal/external sort.

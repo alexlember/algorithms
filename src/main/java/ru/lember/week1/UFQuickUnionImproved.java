@@ -26,7 +26,7 @@ public class UFQuickUnionImproved implements UF {
 
     private int root(int i) {
         while ((i != id[i])) {
-            id[i] = id[id[i]]; // 2 улучшение - после каждого определения root дл яnode делаем связь каждого узла него, дерево будет почти плоским.
+            id[i] = id[id[i]]; // 2 улучшение - после каждого определения root для node делаем связь каждого узла него, дерево будет почти плоским.
             i = id[i];
         }
         return i;

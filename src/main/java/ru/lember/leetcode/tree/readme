@@ -1,0 +1,65 @@
+BT
+
+BST
+
+Balanced tree
+
+DFS - stack (LIFO) or recursion
+BFS - queue (FIFO)
+
+traversals for DFS:
+ * Pre-order : NLR
+ * In-order : LNR
+ * Reverse in-order RNL
+ * Post-order : LRN
+
+in-order: trivial recursive, stack based or Morris with memory O(1).
+complexity O(n) all.
+
+inorder traversal of BST is an array sorted in the ascending order.
+
+insert and delete in BST is O(h), where h is a height of binary tree and
+h = log(n) - for balanced tree
+
+
+preorder array of BT [0] - is root.
+
+DP - dynamic programming
+
+bottom-up - non recursive dp solution with caching all elements step by step.
+
+LCA - Lowest common ancestor - наименьший общий предок.
+
+In Binary Search Tree, using BST properties, we can find LCA in O(h) time where h is height of the tree.
+
+For BT this would be simple O(n).
+
+indegree - степерь вершины графа
+
+
+
+BT
+Searching: For searching element 2,
+we have to traverse all elements (assuming we do breadth first traversal).
+Therefore, searching in binary tree has worst case complexity of O(n).
+
+Insertion: For inserting element as left child of 2, we have to traverse all elements.
+Therefore, insertion in binary tree has worst case complexity of O(n).
+
+Deletion: For deletion of element 2, we have to traverse all elements to find 2 (assuming we do breadth first traversal).
+Therefore, deletion in binary tree has worst case complexity of O(n).
+
+
+BST
+
+Searching: For searching element 1, we have to traverse all elements (in order 3, 2, 1).
+Therefore, searching in binary search tree has worst case complexity of O(n).
+In general, time complexity is O(h) where h is height of BST.
+
+Insertion: For inserting element 0, it must be inserted as left child of 1. T
+herefore, we need to traverse all elements (in order 3, 2, 1) to insert 0
+which has worst case complexity of O(n). In general, time complexity is O(h).
+
+Deletion: For deletion of element 1, we have to traverse all elements to find 1 (in order 3, 2, 1).
+Therefore, deletion in binary tree has worst case complexity of O(n).
+In general, time complexity is O(h).
