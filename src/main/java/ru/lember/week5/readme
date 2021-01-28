@@ -1,0 +1,14 @@
+Reb-black BST
+
+basic operations:
+1) rotate left
+2) rotate right
+3) flip color
+
+
+Basic strategy:
+maintain 1-1 correspondence with 2-3 tree
+
+
+LLRB - left leaning
+red link goes to the left

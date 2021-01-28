@@ -1,6 +1,10 @@
 package ru.lember.leetcode.hasht;
 
+import java.math.BigDecimal;
+import java.math.MathContext;
+import java.math.RoundingMode;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -57,40 +61,70 @@ import java.util.Map;
 public class ValidSudoku {
 
     private static final int CELLS_IN_UNIT = 9;
+    private static final int CELLS_IN_BOX = 3;
+    private static final char DOT_CHAR = '.';
+
+    private static final List<Map<Character, Integer>> ROW_FREQUENCIES = new ArrayList<>();
+    private static final List<Map<Character, Integer>> COLUMN_FREQUENCIES = new ArrayList<>();
+    private static final List<Map<Character, Integer>> BOX_3_X_3_FREQUENCIES = new ArrayList<>();
 
     public boolean isValidSudoku(char[][] board) {
 
-        List<Map<Character, Integer>> rowFrequencies = new ArrayList<>();
-        List<Map<Character, Integer>> columnFrequencies = new ArrayList<>();
-        List<Map<Character, Integer>> box3x3Frequencies = new ArrayList<>();
+        init();
 
         for (int i = 0; i < board.length; i++) {
-            for (int j = 0; j < board[i].length; i++) {
+            for (int j = 0; j < board[i].length; j++) {
 
                 char current = board[i][j];
 
-                Map<Character, Integer>
-                int currentRow = CELLS_IN_UNIT / i;
-                int currentCol = CELLS_IN_UNIT / j;
+                try {
+                    addToMapOrFail(current, ROW_FREQUENCIES.get(i));
+                    addToMapOrFail(current, COLUMN_FREQUENCIES.get(j));
 
+                    int jBox = j / CELLS_IN_BOX;
+                    int iBox = i / CELLS_IN_BOX;
+                    int currentBox = iBox * CELLS_IN_BOX + jBox;
 
+                    addToMapOrFail(current, BOX_3_X_3_FREQUENCIES.get(currentBox));
+                } catch (RuntimeException e) {
+                    return false;
+                }
             }
         }
 
 
-        return false;
+        return true;
     }
 
-    private boolean isRowValid(char[] row) {
-        return false;
+    private void init() {
+        ROW_FREQUENCIES.clear();
+        COLUMN_FREQUENCIES.clear();
+        BOX_3_X_3_FREQUENCIES.clear();
+
+
+        BigDecimal db = new BigDecimal(58.8, new MathContext(4, RoundingMode.HALF_UP));
+        for (int i = 0; i < CELLS_IN_UNIT; i++) {
+
+            Map<Character, Integer> currentRowMap = new HashMap<>();
+            ROW_FREQUENCIES.add(currentRowMap);
+
+            Map<Character, Integer> currentColMap = new HashMap<>();
+            COLUMN_FREQUENCIES.add(currentColMap);
+
+            Map<Character, Integer> currentBoxMap = new HashMap<>();
+            BOX_3_X_3_FREQUENCIES.add(currentBoxMap);
+        }
     }
 
-    private boolean isColumnValid(char[] column) {
-        return false;
-    }
-
-    private boolean is3x3BoxValid(char[] row) {
-        return false;
+    private void addToMapOrFail(char current, Map<Character, Integer> currentFrequenciesMap) {
+        if (current != DOT_CHAR) {
+            Integer currFreq = currentFrequenciesMap.get(current);
+            if (currFreq != null && currFreq > 0) {
+                throw new RuntimeException("non valid sudoku");
+            } else {
+                currentFrequenciesMap.put(current, 1);
+            }
+        }
     }
 
 
