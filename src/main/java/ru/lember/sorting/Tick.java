@@ -2,8 +2,7 @@ package ru.lember.sorting;
 
 public class Tick {
 
-    private long start;
-    private long stop;
+    private final long start;
 
     public Tick() {
         System.out.println("\n");
@@ -12,7 +11,7 @@ public class Tick {
     }
 
     public void stop() {
-        this.stop = System.nanoTime();
+        long stop = System.nanoTime();
         System.out.println("Stopped measuring. Time is: " + (stop - start) + " ns");
     }
 

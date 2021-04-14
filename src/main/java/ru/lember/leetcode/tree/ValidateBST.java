@@ -1,5 +1,8 @@
 package ru.lember.leetcode.tree;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Given a binary tree, determine if it is a valid binary search tree (BST).
  *
@@ -32,26 +35,55 @@ package ru.lember.leetcode.tree;
  */
 public class ValidateBST {
 
-
-    public static void main(String... args) {
-
-    }
-
     boolean isValidBST(TreeNode root) {
 
-        // inorder recursive traversal, each time check.
+        List<Integer> values = new ArrayList<>();
 
+        dfs(root, values);
 
+        if (values.isEmpty() || values.size() == 1) {
+            return true;
+        }
 
-        return false;
+        int prev = values.get(0);
+
+        for (int i = 1; i < values.size(); i++) {
+            int curr = values.get(i);
+            if (curr < prev) {
+                return false;
+            }
+            prev = curr;
+        }
+        return true;
     }
 
 
-    private void dfs(TreeNode root) {
+    private void dfs(TreeNode node, List<Integer> values) {
 
-    } 
+        if (node == null) {
+            return;
+        }
+
+        dfs(node.left, values);
+        values.add(node.val);
+        dfs(node.right, values);
+    }
 
 
+    public boolean isValidBstRecursive(TreeNode root) {
+        return isValidBstRecursiveUtil(root, Long.MIN_VALUE, Long.MAX_VALUE);
+    }
+
+    boolean isValidBstRecursiveUtil(TreeNode root, long min, long max) {
+        if (root == null) {
+            return true;
+        }
+        if (root.val <= min || root.val >= max) {
+            return false;
+        }
+        return isValidBstRecursiveUtil(root.left, min, root.val)
+                && isValidBstRecursiveUtil(root.right, root.val, max);
+    }
 }
 
 

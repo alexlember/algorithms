@@ -9,7 +9,7 @@ class ValidateBSTTest {
     @Test
     void validateBSTTest() {
 
-       ValidateBST service = new ValidateBST();
+        ValidateBST service = new ValidateBST();
 
         TreeNode root = new TreeNode(2);
 
